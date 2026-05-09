@@ -16,12 +16,12 @@ class Settings:
     twilio_phone_number: str
 
     deepgram_api_key: str
-    anthropic_api_key: str
+    groq_api_key: str
     elevenlabs_api_key: str
     elevenlabs_voice_id: str
     elevenlabs_model: str
 
-    anthropic_model: str
+    groq_model: str
     stt_language: str
     stt_model: str
 
@@ -45,7 +45,7 @@ def load_settings() -> Settings:
         twilio_auth_token=_required("TWILIO_AUTH_TOKEN"),
         twilio_phone_number=_required("TWILIO_PHONE_NUMBER"),
         deepgram_api_key=_required("DEEPGRAM_API_KEY"),
-        anthropic_api_key=_required("ANTHROPIC_API_KEY"),
+        groq_api_key=_required("GROQ_API_KEY"),
         elevenlabs_api_key=_required("ELEVENLABS_API_KEY"),
         elevenlabs_voice_id=os.environ.get(
             "ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM"
@@ -53,9 +53,7 @@ def load_settings() -> Settings:
         elevenlabs_model=os.environ.get(
             "ELEVENLABS_MODEL", "eleven_flash_v2_5"
         ),
-        anthropic_model=os.environ.get(
-            "ANTHROPIC_MODEL", "claude-haiku-4-5"
-        ),
+        groq_model=os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"),
         stt_language=os.environ.get("STT_LANGUAGE", "es"),
         stt_model=os.environ.get("STT_MODEL", "nova-2"),
         public_host=_required("PUBLIC_HOST"),

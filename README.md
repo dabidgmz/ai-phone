@@ -26,7 +26,7 @@ The MVP runs locally on your laptop and is reachable from a real phone number th
    ↓ μ-law audio frames (8 kHz)
  Deepgram streaming STT  (stt.py)              ← speech → text in real time
    ↓ final transcript
- Claude with save_order tool  (agent.py)       ← decides what to say + when to save
+ Groq Llama 3.3 with save_order tool  (agent.py) ← decides what to say + when to save
    ↓ token stream, split per sentence
  ElevenLabs streaming TTS  (tts.py)            ← text → μ-law audio
    ↓ μ-law frames
@@ -45,7 +45,7 @@ While the agent is talking, the STT keeps listening. If Deepgram fires `speech_s
 |---|---|---|
 | Telephony | **Twilio Media Streams** | Bidirectional WebSocket with raw audio. Far lower latency than the older `<Gather>` TwiML loop. |
 | STT | **Deepgram nova-2** | First-class μ-law 8 kHz support, sub-300 ms partials, free $200 credit. |
-| LLM | **Claude Haiku 4.5** | Cheap, fast, follows tool-use instructions reliably. Easy to swap to Sonnet 4.6 for harder dialogues. |
+| LLM | **Groq Llama 3.3 70B** | Fastest hosted inference available (~500 tok/s). Generous free tier. OpenAI-compatible tool use. |
 | TTS | **ElevenLabs Flash v2.5** | Natural Spanish voices and `ulaw_8000` output, ~200 ms first-byte latency. |
 | Server | **FastAPI + uvicorn** | Native async + WebSockets, simple lifespan for config. |
 | Tunnel (dev) | **ngrok** | Public HTTPS URL pointing at `localhost:8000` so Twilio can reach the dev box. |
@@ -55,7 +55,7 @@ While the agent is talking, the STT keeps listening. If Deepgram fires `speech_s
 ```
 ai-phone/
 ├── server.py        # FastAPI app: /voice webhook + /media WebSocket + barge-in
-├── agent.py         # Claude streaming agent + save_order tool
+├── agent.py         # Groq streaming agent + save_order tool
 ├── stt.py           # Deepgram WebSocket client (mu-law 8kHz)
 ├── tts.py           # ElevenLabs streaming HTTP client (mu-law 8kHz)
 ├── prompts.py       # System-prompt builder (English instructions, Spanish output)
@@ -79,7 +79,7 @@ Create accounts and grab API keys for:
 |---|---|---|
 | Twilio | https://console.twilio.com | Account SID, Auth Token, phone number |
 | Deepgram | https://console.deepgram.com | API key (ships with $200 free credit) |
-| Anthropic | https://console.anthropic.com | API key (top up ~$5 to start) |
+| Groq | https://console.groq.com | API key (free tier sufficient for testing) |
 | ElevenLabs | https://elevenlabs.io | API key + voice ID for Spanish |
 
 > **Never paste API keys into chat or commit them.** They go in `.env`, which is in `.gitignore`.
@@ -182,7 +182,7 @@ Pick any voice from https://elevenlabs.io/app/voice-library (filter by Spanish),
 ### Models
 
 `.env` knobs:
-- `ANTHROPIC_MODEL` — default `claude-haiku-4-5`. Use `claude-sonnet-4-6` if the agent struggles with edge cases.
+- `GROQ_MODEL` — default `llama-3.3-70b-versatile` (best at tool use on Groq). `llama-3.1-8b-instant` is faster but worse at tools.
 - `ELEVENLABS_MODEL` — default `eleven_flash_v2_5` (lowest latency). `eleven_turbo_v2_5` is slightly higher quality, slightly slower.
 - `STT_LANGUAGE` — default `es`. Try `es-419` or `es-MX` if recognition is off.
 
@@ -192,9 +192,9 @@ Pick any voice from https://elevenlabs.io/app/voice-library (filter by Spanish),
 |---|---|
 | Twilio inbound (US) | ~$0.013 |
 | Deepgram nova-2 | ~$0.0043 |
-| Claude Haiku 4.5 | ~$0.005–0.01 |
+| Groq Llama 3.3 70B | ~$0.001–0.003 (free tier covers most testing) |
 | ElevenLabs Flash v2.5 | ~$0.05–0.10 |
-| **Total** | **~$0.08–0.13 / minute** |
+| **Total** | **~$0.07–0.12 / minute** |
 
 > Set a billing alert in Twilio (Console → Billing → Manage billing alerts) at $10–20 USD while testing. Same for the LLM/TTS providers if they support spend caps.
 
@@ -215,7 +215,7 @@ Pick any voice from https://elevenlabs.io/app/voice-library (filter by Spanish),
 | Twilio webhook fails immediately | URL must be HTTPS and reachable. Check `ngrok` is running and the URL in Twilio matches. |
 | Agent picks up but is silent | ElevenLabs key invalid, or `output_format=ulaw_8000` was rejected. Check server logs for `ElevenLabs returned 4xx`. |
 | Agent doesn't understand you | Try `STT_LANGUAGE=es-419` or `es-MX`. Check Twilio audio actually reaches Deepgram in the logs. |
-| High latency | Confirm `claude-haiku-4-5` and `eleven_flash_v2_5` are active. Use an ngrok region close to you. |
+| High latency | Confirm `llama-3.3-70b-versatile` and `eleven_flash_v2_5` are active. Use an ngrok region close to you. |
 | Robotic / unnatural voice | Switch `ELEVENLABS_VOICE_ID` to a Spanish voice from the ElevenLabs voice library. |
 
 ## Security notes

@@ -84,8 +84,8 @@ async def media(ws: WebSocket) -> None:
         model=settings.elevenlabs_model,
     )
     agent = Agent(
-        api_key=settings.anthropic_api_key,
-        model=settings.anthropic_model,
+        api_key=settings.groq_api_key,
+        model=settings.groq_model,
         menu=menu,
     )
 
