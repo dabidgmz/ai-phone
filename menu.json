@@ -1,0 +1,28 @@
+{
+  "restaurant_name": "Restaurante Demo",
+  "currency": "MXN",
+  "categories": [
+    {
+      "name": "Tacos",
+      "items": [
+        {"id": "taco_pastor", "name": "Taco al pastor", "price": 25.00},
+        {"id": "taco_asada", "name": "Taco de asada", "price": 28.00},
+        {"id": "taco_pollo", "name": "Taco de pollo", "price": 25.00}
+      ]
+    },
+    {
+      "name": "Bebidas",
+      "items": [
+        {"id": "agua_horchata", "name": "Agua de horchata", "price": 30.00},
+        {"id": "agua_jamaica", "name": "Agua de jamaica", "price": 30.00},
+        {"id": "refresco", "name": "Refresco 600ml", "price": 35.00}
+      ]
+    },
+    {
+      "name": "Combos",
+      "items": [
+        {"id": "combo_3tacos", "name": "Combo 3 tacos + bebida", "price": 95.00}
+      ]
+    }
+  ]
+}

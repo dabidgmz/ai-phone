@@ -1,0 +1,10 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+orders/*.json
+!orders/.gitkeep
+*.log
+.ngrok2/
