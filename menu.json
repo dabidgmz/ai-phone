@@ -1,6 +1,11 @@
 {
   "restaurant_name": "Restaurante Demo",
   "currency": "MXN",
+  "hours": {
+    "timezone": "America/Mexico_City",
+    "open": "09:00",
+    "close": "22:00"
+  },
   "categories": [
     {
       "name": "Tacos",

@@ -179,8 +179,8 @@ ai-phone/
 ├── orders/                  ◄ Saved orders land here as <timestamp>.json
 ├── scripts/
 │   ├── simple_server.py     ◄ Twilio-only fallback (no Deepgram/ElevenLabs)
-│   ├── test_groq.py         ◄ End-to-end agent smoke test
-│   └── test_deepgram.py     ◄ Verify Deepgram key with macOS `say`
+│   ├── check_groq.py        ◄ End-to-end agent smoke test
+│   └── check_deepgram.py    ◄ Verify Deepgram key with macOS `say`
 ├── requirements.txt
 ├── .env.example             ◄ Template — copy to .env and fill in
 └── .gitignore
@@ -303,8 +303,8 @@ Located under `scripts/`. All assume `.venv` is active.
 
 | Command | What it checks |
 |---|---|
-| `python scripts/test_groq.py` | End-to-end agent: greeting + ordering + `save_order` tool call. **Run this first.** |
-| `python scripts/test_deepgram.py` | Generates Spanish audio with macOS `say` and posts to Deepgram. Verifies the key. |
+| `python scripts/check_groq.py` | End-to-end agent: greeting + ordering + `save_order` tool call. **Run this first.** |
+| `python scripts/check_deepgram.py` | Generates Spanish audio with macOS `say` and posts to Deepgram. Verifies the key. |
 | `python scripts/simple_server.py` | Twilio-only voice agent (no Deepgram/ElevenLabs). For the 5-min quick start. |
 
 ---

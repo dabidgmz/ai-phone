@@ -9,7 +9,7 @@ each sentence the agent streams back. Useful to verify:
 
 Run:
     source .venv/bin/activate
-    python scripts/test_groq.py
+    python scripts/check_groq.py
 """
 from __future__ import annotations
 
