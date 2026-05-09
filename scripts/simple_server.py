@@ -89,7 +89,7 @@ calls: dict[str, CallState] = {}
 
 
 app = FastAPI(title="ai-phone-simple")
-app.include_router(make_router(orders_dir=ORDERS_DIR))
+app.include_router(make_router(orders_dir=ORDERS_DIR, logs_dir=LOGS_DIR))
 
 
 def twiml(body: str) -> Response:

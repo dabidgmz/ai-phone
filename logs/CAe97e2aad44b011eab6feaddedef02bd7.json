@@ -1,0 +1,39 @@
+{
+  "call_sid": "CAe97e2aad44b011eab6feaddedef02bd7",
+  "caller_phone": "+528711419810",
+  "customer_name": "David",
+  "started_at": "2026-05-09T12:18:33",
+  "turns": [
+    {
+      "role": "agent",
+      "text": "¡Hola David! Qué gusto saludarte. ¿Te traigo lo de siempre o algo distinto hoy?",
+      "ts": "2026-05-09T12:18:33"
+    },
+    {
+      "role": "user",
+      "text": "Hola, quiero dos tacos al pastor, uno de pollo y un agua de horchata",
+      "ts": "2026-05-09T12:18:36"
+    },
+    {
+      "role": "agent",
+      "text": "Genial, te anoto: dos tacos al pastor a veinticinco pesos cada uno, un taco de pollo a veinticinco pesos y un agua de horchata a treinta pesos. ¿Quieres para llevar o comer aquí?",
+      "ts": "2026-05-09T12:18:37",
+      "latency_ms": 731.4
+    },
+    {
+      "role": "user",
+      "text": "Sí confirmo, es para llevar, mi nombre es Maria, lo paso a recoger en 20 minutos",
+      "ts": "2026-05-09T12:18:40"
+    },
+    {
+      "role": "agent",
+      "text": "¡Excelente, María! Tu orden está lista para recoger en 20 minutos. ¡Hasta luego!",
+      "ts": "2026-05-09T12:18:42",
+      "latency_ms": 1454.4
+    }
+  ],
+  "order_id": "20260509_121841",
+  "order_total": 105,
+  "ended_at": "2026-05-09T12:18:42",
+  "duration_s": 9.3
+}

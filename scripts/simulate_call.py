@@ -34,8 +34,11 @@ PORT = int(os.environ.get("PORT", "8000"))
 BASE = f"http://localhost:{PORT}"
 
 # +528711419810 is pre-registered as "David" in customers.json,
-# so the agent should greet by name.
-CALLER_PHONE = "+528711419810"
+# so the agent should greet by name. Override with --from or env var.
+CALLER_PHONE = os.environ.get(
+    "SIM_FROM",
+    sys.argv[sys.argv.index("--from") + 1] if "--from" in sys.argv else "+528711419810",
+)
 
 CONVERSATION = [
     "Hola, quiero dos tacos al pastor, uno de pollo y un agua de horchata",

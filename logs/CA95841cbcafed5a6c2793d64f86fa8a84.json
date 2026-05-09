@@ -1,0 +1,39 @@
+{
+  "call_sid": "CA95841cbcafed5a6c2793d64f86fa8a84",
+  "caller_phone": "+15125551234",
+  "customer_name": null,
+  "started_at": "2026-05-09T12:24:51",
+  "turns": [
+    {
+      "role": "agent",
+      "text": "¡Hola! Bienvenido a Restaurante Demo. ¿Qué te gustaría ordenar?",
+      "ts": "2026-05-09T12:24:51"
+    },
+    {
+      "role": "user",
+      "text": "Hola, quiero dos tacos al pastor, uno de pollo y un agua de horchata",
+      "ts": "2026-05-09T12:24:54"
+    },
+    {
+      "role": "agent",
+      "text": "Genial, te confirmo: dos tacos al pastor a veinticinco pesos cada uno, un taco de pollo a veinticinco pesos y un agua de horchata a treinta pesos. ¿Quieres agregar algo más o es todo?",
+      "ts": "2026-05-09T12:24:54",
+      "latency_ms": 525.2
+    },
+    {
+      "role": "user",
+      "text": "Sí confirmo, es para llevar, mi nombre es Maria, lo paso a recoger en 20 minutos",
+      "ts": "2026-05-09T12:24:57"
+    },
+    {
+      "role": "agent",
+      "text": "¡Excelente! Tu orden está confirmada, María. Nos vemos en 20 minutos. ¡Hasta luego!",
+      "ts": "2026-05-09T12:24:59",
+      "latency_ms": 1065.1
+    }
+  ],
+  "order_id": "20260509_122458",
+  "order_total": 105,
+  "ended_at": "2026-05-09T12:24:59",
+  "duration_s": 8.2
+}
