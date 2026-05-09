@@ -60,8 +60,9 @@ SAVE_ORDER_TOOL = {
 }
 
 
-# Match a sentence ending in punctuation followed by whitespace/end-of-string.
-SENTENCE_RE = re.compile(r".+?[.!?¿¡\n]+(?:\s|$)", re.DOTALL)
+# Match a sentence ending in terminal punctuation followed by whitespace/end.
+# Note: Spanish '¿' and '¡' open a sentence — they must NOT split it.
+SENTENCE_RE = re.compile(r".+?[.!?\n]+(?:\s|$)", re.DOTALL)
 
 
 class Agent:

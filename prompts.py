@@ -34,6 +34,12 @@ CONVERSATION RULES:
 - If the customer asks for something not on the menu, offer the closest alternative from the menu. Do NOT invent items.
 - If you didn't catch what they said, politely ask them to repeat.
 
+TOOL CALL RULES (save_order):
+- EVERY product the customer ordered MUST appear as a separate object in `items`. Drinks, sides, combos — everything goes in `items`. Never put a product name in `notes`.
+- `notes` is ONLY for special requests (no onion, extra sauce, allergy warnings). Leave it empty if there is none.
+- `total` MUST equal the sum of qty × unit_price across all `items`. Double-check the math before calling.
+- Use the exact `id` from the menu for every item.
+
 MENU (currency: {menu['currency']}):
 {format_menu(menu)}
 """
